@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Thymeleaf Demo</title>
+</head>
+<body>
+<H1>
+    Index Page
+</H1>
+<h2>
+    <p th:text="${greetingMsg}"></p>
+</h2>
+
+<div id="emp-form">
+    <!--/*@thymesVar id="employee" type="demothymeleaf.domain.Employee"*/-->
+    <form th:object="${employee}" th:action="@{/add}" th:name="employeeInput" method="post">
+        <label>Employee ID :
+            <input type="number" th:value="*{id}" th:name="id">
+        </label>
+        <label>Employee Name :
+            <input type="text" th:value="*{name}" th:name="name">
+        </label>
+        <label>Employee Surname :
+            <input type="text" th:value="*{surname}" th:name="surname">
+        </label>
+        <input type="submit" value="Add"/>
+    </form>
+</div>
+<br>
+<div id="employee-list-data">
+    <table style="border: indianred solid 1px">
+        <thead>
+        <tr style="border: indianred solid 1px">
+            <th style="border: indianred solid 1px">ID</th>
+            <th style="border: indianred solid 1px">Name</th>
+            <th style="border: indianred solid 1px">Surname</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!--/*@thymesVar id="pemsTransaction" type="bempems.domain.pems.pemstxn.PEMSTransaction"*/-->
+        <tr th:each="employee: ${employeeList}" >
+            <td style="border: indianred solid 1px" th:text="${employee.id}"></td>
+            <td style="border: indianred solid 1px" th:text="${employee.name}"></td>
+            <td style="border: indianred solid 1px" th:text="${employee.surname}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
